@@ -1,0 +1,52 @@
+header {
+  background: tomato;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8px;
+}
+
+header a {
+  color: white;
+}
+
+.Ham {
+  list-style: none;
+}
+
+.Ham li {
+  position: relative;
+  width: 44px;
+  height: 4px;
+  background: white;
+}
+
+.Ham li:nth-child(2) {
+  margin: 8px 0;
+}
+
+.X li:nth-child(2) {
+  background: transparent;
+}
+
+.X li:first-child {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  top: 12px;
+}
+
+.X li:last-child {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  bottom: 12px;
+}
+/*# sourceMappingURL=styles.css.map */

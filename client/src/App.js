@@ -10,17 +10,23 @@ May this be for God's glory.  Soli Deo Gloria.
 
 */
 
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-
 //children
+import Header from "./components/Header";
 import Home from "./components/Home";
 import Pedagogy from "./components/Pedagogy";
 import Instrument from "./components/Instrument";
 
+//dep
+import { useState } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+
 function App() {
+  const [isHam, setIsHam] = useState(true);
+
   return (
     <div className="App">
+      <Header isHam={isHam} setIsHam={setIsHam} />
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
