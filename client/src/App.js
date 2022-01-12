@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+
+I want this app to help people in positions of great influence
+teach right things to their band kids. 
+
+These people, whom I love, are not stupid -- they just weren't
+prepared well, as many are not.
+
+May this be for God's glory.  Soli Deo Gloria.
+
+*/
+
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+
+//children
+import Home from "./components/Home";
+import Pedagogy from "./components/Pedagogy";
+import Instrument from "./components/Instrument";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/">
+          <Route index element={<Home />} />
+          <Route path="pedagogy" element={<Pedagogy />}>
+            <Route path=":instrument" element={<Instrument />} />
+          </Route>
+          <Route path="*" element={<Home />} />
+        </Route>
+      </Routes>
     </div>
   );
 }
