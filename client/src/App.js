@@ -15,11 +15,13 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Pedagogy from "./components/Pedagogy";
 import Instrument from "./components/Instrument";
+import MenuBlock from "./components/MenuBlock";
 
 //dep
 import { useState } from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { instruments } from "./data/data";
 
 function App() {
   const [isHam, setIsHam] = useState(true);
@@ -31,6 +33,10 @@ function App() {
         <Route path="/">
           <Route index element={<Home />} />
           <Route path="pedagogy" element={<Pedagogy />}>
+            <Route
+              index
+              element={<MenuBlock title="pedagogy" list={instruments} />}
+            />
             <Route path=":instrument" element={<Instrument />} />
           </Route>
           <Route path="*" element={<Home />} />

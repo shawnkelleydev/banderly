@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import "./styles.css";
 
+//children
+import Menu from "../Menu";
+
 export default function Index(props) {
   return (
     <header>
@@ -15,6 +18,7 @@ export default function Index(props) {
         <li></li>
         <li></li>
       </ul>
+      <Menu isHam={props.isHam} />
     </header>
   );
 }
