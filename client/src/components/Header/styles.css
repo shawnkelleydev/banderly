@@ -1,8 +1,6 @@
 header {
-  background: tomato;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
+  background: black;
+  padding: 8px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -12,37 +10,41 @@ header {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 64px;
+}
+
+header h1 {
+  font-family: 'Dancing Script', cursive;
+  color: #54ddff;
+}
+
+header .active {
+  color: #54ddff;
+}
+
+header button {
   padding: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 44px;
+  border: none;
+  background: none;
+  font-size: 1em;
 }
 
-.Ham {
-  list-style: none;
+header button span {
+  font-size: .8em;
+  margin-left: 4px;
 }
 
-.Ham li {
-  position: relative;
-  width: 44px;
-  height: 4px;
-  background: white;
-}
-
-.Ham li:nth-child(2) {
-  margin: 8px 0;
-}
-
-.X li:nth-child(2) {
-  background: transparent;
-}
-
-.X li:first-child {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-  top: 12px;
-}
-
-.X li:last-child {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  bottom: 12px;
+header button {
+  color: white;
 }
 /*# sourceMappingURL=styles.css.map */

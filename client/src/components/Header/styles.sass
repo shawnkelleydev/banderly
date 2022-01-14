@@ -1,31 +1,30 @@
+$blue: #54ddff
+  
 header
-  background: tomato
-  position: fixed
-  width: 100%
-  bottom: 0
+  background: black
+  padding: 8px
   display: flex
   justify-content: space-between
   align-items: center
-  padding: 8px
-
-.Ham
-  list-style: none
-  li
-    position: relative
-    width: 44px
-    height: 4px
-    background: white
-  li:nth-child(2)
-    margin: 8px 0
-
-.X
-  li:nth-child(2)
-    background: transparent
-  li:first-child
-    transform: rotate(45deg)
-    top: 12px
-  li:last-child
-    transform: rotate(-45deg)
-    bottom: 12px
-
-
+  position: fixed
+  top: 0
+  width: 100vw
+  height: 64px
+  h1
+    font-family: 'Dancing Script', cursive;
+    color: $blue
+  .active
+    color: $blue
+  button
+    padding: 8px
+    display: flex
+    align-items: center
+    height: 44px
+    border: none
+    background: none
+    font-size: 1em
+    span
+      font-size: .8em
+      margin-left: 4px
+  button
+    color: white

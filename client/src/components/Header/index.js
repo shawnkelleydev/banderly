@@ -1,24 +1,26 @@
-import { Link } from "react-router-dom";
+// HEADER
+
+import { useState } from "react";
 import "./styles.css";
 
-//children
 import Menu from "../Menu";
+import { Link } from "react-router-dom";
 
-export default function Index(props) {
+export default function Index() {
+  const [showMega, setShowMega] = useState(false);
+
   return (
     <header>
       <Link to="/">
-        <h2>Band Helper</h2>
+        <h1>Banderly</h1>
       </Link>
-      <ul
-        className={props.isHam ? "Ham" : "Ham X"}
-        onClick={() => props.setIsHam(!props.isHam)}
+      <button
+        onClick={() => setShowMega(!showMega)}
+        className={showMega ? "active" : null}
       >
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-      <Menu isHam={props.isHam} />
+        {showMega ? <>&#187;</> : <>&#171;</>} instruments
+      </button>
+      <Menu show={showMega} setShow={setShowMega} />
     </header>
   );
 }

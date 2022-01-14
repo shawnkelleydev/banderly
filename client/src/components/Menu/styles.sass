@@ -1,19 +1,24 @@
-nav
-  position: fixed
-  display: flex
-  flex-direction: column
-  background: black 
-  width: 100%
+.nav
+  position: absolute
+  top: 64px
   left: 0
-  bottom: 60px
-  max-height: 80vh
+  color: white
+  background: black
+  text-align: left
+  width: 100vw
+  padding: 16px
+  max-height: calc(100vh - 64px)
+  overflow: auto
+  ul
+    display: flex
+    justify-content: flex-start
+    flex-direction: column
   a
+    color: white
+    padding: 16px
+    min-height: 44px
     display: flex
-    height: 44px
-    display: flex
-    align-items: center
-    padding: 8px
-    font-size: 1.3em
+    align-items: center 
 
-.Menu-hide
-  left: 800px
+.nav-hide
+  left: 1000px
