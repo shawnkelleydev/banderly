@@ -1,6 +1,7 @@
 // HEADLINE
 
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react/cjs/react.development";
 import "./styles.css";
 
@@ -8,6 +9,8 @@ export default function Index(props) {
   const [quotes, setQuotes] = useState(null);
   const [quote, setQuote] = useState(null);
   const [speaker, setSpeaker] = useState(null);
+
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     if (props.instrument) {
@@ -18,14 +21,16 @@ export default function Index(props) {
 
   useEffect(() => {
     if (quotes) {
-      let q = quotes;
-      q = q[0];
-      let cit = q.citation;
-      q = q.quote;
-      setQuote(q);
-      setSpeaker(cit);
+      let quo = quotes;
+      let n = searchParams.get("q");
+      if (n) {
+        let text = quo[n].quote;
+        let cit = quo[n].citation;
+        setQuote(text);
+        setSpeaker(cit);
+      }
     }
-  }, [quotes]);
+  }, [quotes, searchParams]);
 
   return (
     <>

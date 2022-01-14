@@ -8,7 +8,17 @@ export const instruments = {
         oneSentence: "one sentence headline",
         bullets: ["bullet 1", "bullet 2", "bullet 3"],
       },
-      quotes: [{ quote: "quote", citation: "citation" }],
+      quotes: [
+        {
+          quote: "Everyone who plays the flute should learn singing.",
+          citation: "James Galway",
+        },
+        {
+          quote:
+            "The flute is not an instrument that has a good moral effect. It is too exciting.",
+          citation: "Aristotle",
+        },
+      ],
       topics: {
         pedagogy: { embouchure: "embouchure" },
         repair: { repairTopic: "repair topic" },

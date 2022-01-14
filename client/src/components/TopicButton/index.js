@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import "./styles.css";
 
 // TOPIC BUTTON
@@ -9,6 +9,8 @@ export default function Index(props) {
   const [active, setActive] = useState(false);
 
   const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const [q, setQ] = useState(null);
 
   //avoid async issues
   useEffect(() => {
@@ -16,6 +18,12 @@ export default function Index(props) {
       setInstrument(props.instrument);
     }
   }, [props]);
+
+  //q
+  useEffect(() => {
+    let n = searchParams.get("q");
+    setQ(n);
+  }, [searchParams]);
 
   //check if currently navigated to this topic / setActive as needed
   useEffect(() => {
@@ -25,14 +33,16 @@ export default function Index(props) {
     setActive(loc === props.topic ? true : false);
   }, [location, props]);
 
+  //random number derived from length of quotes, encoded in url
+
   return (
     <>
       {!instrument ? null : (
         <Link
           to={
             !active
-              ? `/${instrument.name}/${props.topic}`
-              : `/${instrument.name}`
+              ? `/${instrument.name}/${props.topic}?q=${q}`
+              : `/${instrument.name}?q=${q}`
           }
         >
           <button className={active ? "active" : null}>{props.topic}</button>
