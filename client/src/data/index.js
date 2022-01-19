@@ -50,6 +50,7 @@ export const notes = [
 export const trans = {
   trumpet: 2,
   frenchHorn: 7,
+  flute: 12,
   clarinet: 2,
   altoSaxophone: 9,
   trombone: -12,

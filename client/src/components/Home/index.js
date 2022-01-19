@@ -9,6 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     let inst = [
+      "flute",
       "clarinet",
       "altoSaxophone",
       "trumpet",
