@@ -50,9 +50,17 @@
 .Home .idiv button {
   width: 44px;
   height: 44px;
+  font-size: 1em;
 }
 
 .Home .idiv button, .Home .idiv .instr {
   text-transform: capitalize;
+}
+
+.Home .idiv .note {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 /*# sourceMappingURL=styles.css.map */

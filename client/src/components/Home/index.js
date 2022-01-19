@@ -16,11 +16,20 @@ export default function Home() {
       "frenchHorn",
       "trombone",
     ];
+    let fingerings = [
+      null,
+      null,
+      null,
+      ["0", "1", "12", "13", "0"],
+      ["0", "1", "12", "0", "1"],
+      ["1", "3", "4", "6", "1"],
+    ];
     let arr = [];
-    inst.forEach((ins) => {
+    inst.forEach((ins, i) => {
       let obj = {
         instrument: ins,
         trans: 0,
+        fing: fingerings[i],
       };
 
       let keys = Object.keys(trans);
@@ -97,7 +106,12 @@ function FiveNotes(props) {
         {!displayFive
           ? null
           : displayFive.map((note, i) => (
-              <Note key={i} displayNote={note} playNote={playFive[i]} />
+              <div key={i} className="note">
+                <Note displayNote={note} playNote={playFive[i]} />
+                <span>
+                  {props.instrument.fing ? props.instrument.fing[i] : null}
+                </span>
+              </div>
             ))}
       </div>
     </div>
@@ -114,7 +128,6 @@ function Note(props) {
       if (burst.length > 1) {
         let flat = "&#9837;";
         note = burst[0] + flat;
-        console.log(note);
       }
     }
     setDNote(note);
