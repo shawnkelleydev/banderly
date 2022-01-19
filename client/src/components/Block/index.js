@@ -1,12 +1,12 @@
 // MENU BLOCK
 
-import "./styles.css";
 import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { instruments } from "../../data/data";
+import { instruments } from "../../data";
 
 export default function Index(props) {
   const [show, setShow] = useState(false);
+  const [family, setFamily] = useState(null);
   const [familyList, setFamilyList] = useState(null);
 
   useEffect(() => {
@@ -17,6 +17,7 @@ export default function Index(props) {
 
   useEffect(() => {
     let family = props.family;
+    setFamily(family);
     let list = instruments[family];
     list = Object.keys(list);
     //get actual name with spaces / not camel case
@@ -38,7 +39,7 @@ export default function Index(props) {
         <ul className={!show ? "ul hide" : "ul"}>
           {familyList.map((instrument, i) => (
             <NavLink
-              to={`/${instrument}`}
+              to={`/${family}/${instrument}`}
               key={i}
               onClick={() => props.setShowMega(false)}
             >

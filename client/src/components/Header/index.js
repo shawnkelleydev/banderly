@@ -16,7 +16,7 @@ export default function Index() {
       </Link>
       <button
         onClick={() => setShowMega(!showMega)}
-        className={showMega ? "active" : null}
+        className={showMega ? "active instruments" : "instruments"}
       >
         {showMega ? <>&#187;</> : <>&#171;</>} instruments
       </button>

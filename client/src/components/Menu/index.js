@@ -2,7 +2,7 @@
 
 import "./styles.css";
 
-import { instruments } from "../../data/data";
+import { instruments } from "../../data";
 import { useEffect, useState } from "react";
 import Block from "../Block";
 

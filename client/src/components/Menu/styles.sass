@@ -1,3 +1,5 @@
+// MENU CSS
+  
 .nav
   position: absolute
   top: 64px
@@ -20,5 +22,35 @@
     display: flex
     align-items: center 
 
+.Block
+  width: 100%
+  border-bottom: 1px solid lightGray
+  h3
+    display: flex
+    align-items: center
+    min-height: 44px
+  .hide
+    display: none
+
 .nav-hide
   left: 1000px
+
+@media (min-width: 768px)
+  .instruments
+    display: none
+  .nav
+    position: static
+    width: auto
+    display: flex
+    padding: 0
+
+  .Block
+    margin-left: 24px
+    border: none
+    h3
+      cursor: pointer
+    ul
+      position: absolute
+      right: 0
+      top: 64px
+      background: black

@@ -28,6 +28,7 @@
 
 .Instrument ul {
   width: 60vw;
+  max-width: 200px;
   text-align: left;
 }
 
@@ -39,6 +40,7 @@
   border: 1px solid black;
   border-radius: 8px;
   margin-right: 4px;
+  cursor: pointer;
 }
 
 .Instrument .active {

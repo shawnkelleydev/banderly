@@ -18,9 +18,8 @@ export default function Index(props) {
       {!data ? null : (
         <>
           <h1 className="capitalize">{data.name}</h1>
-          <p>{data.headline.oneSentence}</p>
           <ul>
-            {data.headline.bullets.map((bullet, i) => (
+            {data.bullets.map((bullet, i) => (
               <li key={i}>{bullet}</li>
             ))}
           </ul>

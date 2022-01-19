@@ -1,12 +1,11 @@
 // INSTRUMENT
 
 import { useEffect, useState } from "react";
-import { Outlet, useParams, useSearchParams } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 
 import "./styles.css";
 import Headline from "../Headline";
-import Quote from "../Quote";
-import { instruments } from "../../data/data";
+import { instruments } from "../../data";
 import TopicButton from "../TopicButton";
 
 export default function Index() {
@@ -16,7 +15,6 @@ export default function Index() {
   const [topics, setTopics] = useState(null);
 
   const params = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     //re-establish camel case for key comparison
@@ -51,15 +49,6 @@ export default function Index() {
     }
   }, [family, instrument]);
 
-  // set quote query
-  useEffect(() => {
-    if (instrObj) {
-      let n = instrObj.quotes.length;
-      n = Math.floor(Math.random() * n);
-      setSearchParams(`q=${n}`);
-    }
-  }, [instrObj, setSearchParams]);
-
   useEffect(() => {
     if (instrObj) {
       if (instrObj.topics) {
@@ -71,7 +60,7 @@ export default function Index() {
   return (
     <div className="Instrument full-height">
       <Headline instrument={instrObj} />
-      <Quote instrument={instrObj} quoteParams={searchParams} />
+
       {topics ? (
         <div className="TopicButtons">
           {" "}

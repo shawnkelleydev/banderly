@@ -14,6 +14,7 @@ May this be for God's glory.  Soli Deo Gloria.
 import Home from "./components/Home";
 import Header from "./components/Header";
 import Instrument from "./components/Instrument";
+import Family from "./components/Family";
 import Topic from "./components/Topic";
 import Footer from "./components/Footer";
 
@@ -28,8 +29,10 @@ function App() {
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path=":instrument" element={<Instrument />}>
-            <Route path=":topic" element={<Topic />} />
+          <Route path=":family" element={<Family />}>
+            <Route path=":instrument" element={<Instrument />}>
+              <Route path=":topic" element={<Topic />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
