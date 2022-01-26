@@ -18,6 +18,7 @@ export default function Home() {
       "baritone",
       "tuba",
     ];
+    // FINGERINGS ARRAY FOR PATCHING TO INSTRUMENTS BELOW
     let fingerings = [
       null,
       null,
@@ -47,20 +48,27 @@ export default function Home() {
 
   return (
     <div className="Home full-height">
-      <h3>Know thine instruments.</h3>
+      <h3>
+        <em>Know thine instruments.</em>
+      </h3>
       <Metronome />
-      <h4>First Five Notes</h4>
+      <h3>First Five Notes</h3>
       {instruments
         ? instruments.map((instrument, i) => (
             <FiveNotes key={i} instrument={instrument} />
           ))
         : null}
-      <img
-        src="https://www.yamaha.com/en/musical_instrument_guide/common/images/trombone/fingering1.gif"
-        alt="trombone slide positions"
-        className="trombone"
-      />
     </div>
+  );
+}
+
+function Trombone() {
+  return (
+    <img
+      src="https://www.yamaha.com/en/musical_instrument_guide/common/images/trombone/fingering1.gif"
+      alt="trombone slide positions"
+      className="trombone"
+    />
   );
 }
 
@@ -90,7 +98,7 @@ function Metronome() {
 
   return (
     <div className="Metronome">
-      <h4>Metronome</h4>
+      <h3>Metronome</h3>
       <div>
         <label htmlFor="metroInput">
           <span>bpm</span>
@@ -177,23 +185,25 @@ function FiveNotes(props) {
       setPlayFive(pArr);
     }
   }, [firstFive, allNotes, instrObj]);
-
   return (
-    <div className="idiv">
-      <div className="instr">{props.instrument.instrument}</div>
-      <div className="notes">
-        {!displayFive
-          ? null
-          : displayFive.map((note, i) => (
-              <div key={i} className="note">
-                <Note displayNote={note} playNote={playFive[i]} />
-                <span>
-                  {props.instrument.fing ? props.instrument.fing[i] : null}
-                </span>
-              </div>
-            ))}
+    <>
+      <div className="idiv">
+        <div className="instr">{props.instrument.instrument}</div>
+        <div className="notes">
+          {!displayFive
+            ? null
+            : displayFive.map((note, i) => (
+                <div key={i} className="note">
+                  <Note displayNote={note} playNote={playFive[i]} />
+                  <span>
+                    {props.instrument.fing ? props.instrument.fing[i] : null}
+                  </span>
+                </div>
+              ))}
+        </div>
       </div>
-    </div>
+      {props.instrument.instrument === "trombone" ? <Trombone /> : null}
+    </>
   );
 }
 
