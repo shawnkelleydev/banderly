@@ -50,6 +50,11 @@ export default function Home() {
             <FiveNotes key={i} instrument={instrument} />
           ))
         : null}
+      <img
+        src="https://www.yamaha.com/en/musical_instrument_guide/common/images/trombone/fingering1.gif"
+        alt="trombone slide positions"
+        className="trombone"
+      />
     </div>
   );
 }
