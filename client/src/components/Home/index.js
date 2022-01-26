@@ -72,8 +72,9 @@ function Metronome() {
       setActive(true);
       let int = 60 / parseInt(bpm);
       int *= 1000;
-      function metro() {
+      async function metro() {
         const synth = new Tone.Synth().toDestination();
+        await Tone.start();
         synth.triggerAttackRelease(pitch, "16n");
       }
       setMet(setInterval(metro, int));
