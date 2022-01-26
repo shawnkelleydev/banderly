@@ -19,6 +19,36 @@
   margin-bottom: 48px;
 }
 
+.Home .Metronome {
+  margin-bottom: 24px;
+}
+
+.Home .Metronome h4 {
+  margin-bottom: 36px;
+}
+
+.Home .Metronome input, .Home .Metronome button {
+  height: 44px;
+}
+
+.Home .Metronome button {
+  width: 44px;
+}
+
+.Home .Metronome input {
+  padding: 8px;
+  width: 60px;
+}
+
+.Home .Metronome label {
+  position: absolute;
+}
+
+.Home .Metronome label span {
+  position: relative;
+  bottom: 24px;
+}
+
 .Home .idiv {
   width: 100%;
   display: -webkit-box;

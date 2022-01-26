@@ -44,6 +44,7 @@ export default function Home() {
   return (
     <div className="Home full-height">
       <h3>Know thine instruments.</h3>
+      <Metronome />
       {instruments
         ? instruments.map((instrument, i) => (
             <FiveNotes key={i} instrument={instrument} />
@@ -53,6 +54,52 @@ export default function Home() {
   );
 }
 
+// METRONOME
+function Metronome() {
+  const [active, setActive] = useState(false);
+  const [bpm, setBpm] = useState("");
+  const [met, setMet] = useState(null);
+
+  function handleClick() {
+    if (bpm !== "" && !active) {
+      setActive(true);
+      let int = 60 / parseInt(bpm);
+      int *= 1000;
+      function metro() {
+        const synth = new Tone.Synth().toDestination();
+        synth.triggerAttackRelease("F6", "16n");
+      }
+      setMet(setInterval(metro, int));
+    } else {
+      setActive(false);
+      setMet(clearInterval(met));
+    }
+  }
+
+  return (
+    <div className="Metronome">
+      <h4>Metronome</h4>
+      <label htmlFor="metroInput">
+        <span>bpm</span>
+      </label>
+      <input
+        id="metroInput"
+        type="number"
+        value={bpm}
+        onChange={(e) => setBpm(e.target.value)}
+      />
+      <button
+        onClick={() => {
+          handleClick();
+        }}
+      >
+        {active ? "stop" : "go"}
+      </button>
+    </div>
+  );
+}
+
+// 5 NOTES
 function FiveNotes(props) {
   const [allNotes, setAllNotes] = useState(null);
   const [firstFive, setFirstFive] = useState(null);
@@ -118,6 +165,7 @@ function FiveNotes(props) {
   );
 }
 
+// NOTE COMPONENT
 function Note(props) {
   const [dNote, setDNote] = useState(null);
 
