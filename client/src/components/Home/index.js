@@ -45,6 +45,7 @@ export default function Home() {
     <div className="Home full-height">
       <h3>Know thine instruments.</h3>
       <Metronome />
+      <h4>First Five Notes</h4>
       {instruments
         ? instruments.map((instrument, i) => (
             <FiveNotes key={i} instrument={instrument} />
@@ -62,6 +63,7 @@ export default function Home() {
 // METRONOME
 function Metronome() {
   const [active, setActive] = useState(false);
+  const [pitch, setPitch] = useState("F6");
   const [bpm, setBpm] = useState("");
   const [met, setMet] = useState(null);
 
@@ -72,7 +74,7 @@ function Metronome() {
       int *= 1000;
       function metro() {
         const synth = new Tone.Synth().toDestination();
-        synth.triggerAttackRelease("F6", "16n");
+        synth.triggerAttackRelease(pitch, "16n");
       }
       setMet(setInterval(metro, int));
     } else {
@@ -84,22 +86,42 @@ function Metronome() {
   return (
     <div className="Metronome">
       <h4>Metronome</h4>
-      <label htmlFor="metroInput">
-        <span>bpm</span>
-      </label>
-      <input
-        id="metroInput"
-        type="number"
-        value={bpm}
-        onChange={(e) => setBpm(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          handleClick();
-        }}
-      >
-        {active ? "stop" : "go"}
-      </button>
+      <div>
+        <label htmlFor="metroInput">
+          <span>bpm</span>
+          <input
+            id="metroInput"
+            type="number"
+            pattern="[0-9]*"
+            value={bpm}
+            onChange={(e) => setBpm(e.target.value)}
+          />
+        </label>
+        <label htmlFor="pitch">
+          <span>pitch</span>
+          <select id="pitch" onChange={(e) => setPitch(e.target.value)}>
+            <option value="F6">F</option>
+            <option value="E6">E</option>
+            <option value="Eb6">E&#9837;/D&#9839;</option>
+            <option value="D6">D</option>
+            <option value="Db6">D&#9837;/C&#9839;</option>
+            <option value="C6">C</option>
+            <option value="B5">B</option>
+            <option value="Bb5">B&#9837;/A&#9839;</option>
+            <option value="A5">A</option>
+            <option value="Ab5">A&#9837;/G&#9839;</option>
+            <option value="G5">G</option>
+            <option value="Gb5">G&#9837;/F&#9839;</option>
+          </select>
+        </label>
+        <button
+          onClick={() => {
+            handleClick();
+          }}
+        >
+          {active ? "stop" : "go"}
+        </button>
+      </div>
     </div>
   );
 }

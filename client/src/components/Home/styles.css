@@ -24,19 +24,28 @@
   margin-bottom: 48px;
 }
 
-.Home .Metronome {
-  margin-bottom: 24px;
-}
-
-.Home .Metronome h4 {
+.Home h4 {
   margin-bottom: 36px;
 }
 
-.Home .Metronome input, .Home .Metronome button {
+.Home .Metronome {
+  margin-bottom: 48px;
+}
+
+.Home .Metronome div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.Home .Metronome input, .Home .Metronome button, .Home .Metronome select {
   height: 44px;
 }
 
-.Home .Metronome button {
+.Home .Metronome button, .Home .Metronome select {
   width: 44px;
 }
 
@@ -46,12 +55,18 @@
 }
 
 .Home .Metronome label {
-  position: absolute;
+  margin-right: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .Home .Metronome label span {
-  position: relative;
-  bottom: 24px;
+  text-align: left;
 }
 
 .Home .idiv {
