@@ -54,4 +54,6 @@ export const trans = {
   clarinet: 2,
   altoSaxophone: 9,
   trombone: -12,
+  baritone: -12,
+  tuba: -24,
 };

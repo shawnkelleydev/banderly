@@ -15,6 +15,8 @@ export default function Home() {
       "trumpet",
       "frenchHorn",
       "trombone",
+      "baritone",
+      "tuba",
     ];
     let fingerings = [
       null,
@@ -23,6 +25,8 @@ export default function Home() {
       ["0", "1", "12", "13", "0"],
       ["0", "1", "12", "0", "1"],
       ["1", "3", "4", "6", "1"],
+      ["0", "1", "12", "13", "0"],
+      ["0", "1", "12", "13", "0"],
     ];
     let arr = [];
     inst.forEach((ins, i) => {
@@ -164,7 +168,7 @@ function FiveNotes(props) {
         dArr.push(dnote);
 
         let pnote = note;
-        if (t === 12 || t === -12) {
+        if (t >= 12 || t <= -12) {
           pnote = allNotes[trans];
         }
         pArr.push(pnote);
