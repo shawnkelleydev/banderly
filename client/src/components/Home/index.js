@@ -78,10 +78,12 @@ function Metronome() {
   const [pitch, setPitch] = useState("F6");
   const [bpm, setBpm] = useState("");
   const [met, setMet] = useState(null);
+  const [warning, setWarning] = useState(false);
 
   function handleClick() {
-    if (bpm !== "" && !active) {
+    if (bpm !== "" && bpm > 0 && !active) {
       setActive(true);
+      setWarning(false);
       let int = 60 / parseInt(bpm);
       int *= 1000;
       async function metro() {
@@ -91,6 +93,9 @@ function Metronome() {
       }
       setMet(setInterval(metro, int));
     } else {
+      if (bpm === "" || bpm < 1) {
+        setWarning(true);
+      }
       setActive(false);
       setMet(clearInterval(met));
     }
@@ -98,7 +103,11 @@ function Metronome() {
 
   return (
     <div className="Metronome">
-      <h3>Metronome</h3>
+      {!warning ? (
+        <h3>Metronome</h3>
+      ) : (
+        <h3 className="warning">How many beats per minute (bpm) ?</h3>
+      )}
       <div>
         <label htmlFor="metroInput">
           <span>bpm</span>
@@ -108,6 +117,7 @@ function Metronome() {
             pattern="[0-9]*"
             value={bpm}
             onChange={(e) => setBpm(e.target.value)}
+            style={warning ? { border: "4px solid red" } : null}
           />
         </label>
         <label htmlFor="pitch">

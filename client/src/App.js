@@ -18,6 +18,8 @@ import Header from "./components/Header";
 // import Topic from "./components/Topic";
 import Footer from "./components/Footer";
 
+import { Navigate } from "react-router-dom";
+
 //dep
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
@@ -34,6 +36,7 @@ function App() {
               <Route path=":topic" element={<Topic />} />
             </Route>
           </Route> */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
       </Routes>
       <Footer />

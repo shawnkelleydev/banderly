@@ -18,11 +18,11 @@ header {
 
 header h1 {
   font-family: 'Dancing Script', cursive;
-  color: #54ddff;
+  color: #019CFE;
 }
 
 header .active {
-  color: #54ddff;
+  color: #019CFE;
 }
 
 header button {
