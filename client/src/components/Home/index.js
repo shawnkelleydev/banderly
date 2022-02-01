@@ -127,7 +127,7 @@ function Metronome() {
       ) : empty ? (
         <h3 className="warning">How many beats per minute (bpm) ?</h3>
       ) : (
-        <h3>Metronome</h3>
+        <h3>Metronome{active ? ` running at ${bpm} bpm.` : null}</h3>
       )}
       <div>
         <label htmlFor="metroInput">
