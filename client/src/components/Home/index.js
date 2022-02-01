@@ -79,12 +79,18 @@ function Metronome() {
   const [bpm, setBpm] = useState("");
   const [met, setMet] = useState(null);
   const [warning, setWarning] = useState(false);
+  const [tooHigh, setTooHigh] = useState(false);
+  const [tooLow, setTooLow] = useState(false);
 
   function handleClick() {
-    if (bpm !== "" && bpm > 0 && !active) {
+    let tempo = parseInt(bpm);
+    if (tempo !== "" && tempo > 0 && tempo < 300 && !active) {
       setActive(true);
+      // cancel warnings
       setWarning(false);
-      let int = 60 / parseInt(bpm);
+      setTooHigh(false);
+      setTooLow(false);
+      let int = 60 / tempo;
       int *= 1000;
       async function metro() {
         const synth = new Tone.Synth().toDestination();
@@ -93,8 +99,18 @@ function Metronome() {
       }
       setMet(setInterval(metro, int));
     } else {
-      if (bpm === "" || bpm < 1) {
+      if (tempo === "") {
         setWarning(true);
+      }
+
+      if (tempo < 1) {
+        setWarning(true);
+        setTooLow(true);
+      }
+
+      if (tempo > 300) {
+        setWarning(true);
+        setTooHigh(true);
       }
       setActive(false);
       setMet(clearInterval(met));
@@ -105,6 +121,10 @@ function Metronome() {
     <div className="Metronome">
       {!warning ? (
         <h3>Metronome</h3>
+      ) : warning && tooHigh ? (
+        <h3 className="warning">Too high. Try something under 300.</h3>
+      ) : warning && tooLow ? (
+        <h3>Too low. Try something above 0.</h3>
       ) : (
         <h3 className="warning">How many beats per minute (bpm) ?</h3>
       )}
