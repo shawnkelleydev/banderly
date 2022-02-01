@@ -84,7 +84,7 @@ function Metronome() {
 
   function handleClick() {
     let tempo = parseInt(bpm);
-    if (tempo !== "" && tempo > 0 && tempo < 300 && !active) {
+    if (tempo !== "" && tempo > 0 && tempo <= 300 && !active) {
       setActive(true);
       // cancel warnings
       setWarning(false);
@@ -124,7 +124,7 @@ function Metronome() {
       ) : warning && tooHigh ? (
         <h3 className="warning">Too high. Try something under 300.</h3>
       ) : warning && tooLow ? (
-        <h3>Too low. Try something above 0.</h3>
+        <h3 className="warning">Too low. Try something above 0.</h3>
       ) : (
         <h3 className="warning">How many beats per minute (bpm) ?</h3>
       )}
