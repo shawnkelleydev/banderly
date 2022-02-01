@@ -78,40 +78,41 @@ function Metronome() {
   const [pitch, setPitch] = useState("F6");
   const [bpm, setBpm] = useState("");
   const [met, setMet] = useState(null);
-  const [warning, setWarning] = useState(false);
+  const [empty, setEmpty] = useState(false);
   const [tooHigh, setTooHigh] = useState(false);
   const [tooLow, setTooLow] = useState(false);
 
   function handleClick() {
     let tempo = parseInt(bpm);
-    if (tempo !== "" && tempo > 0 && tempo <= 300 && !active) {
-      setActive(true);
-      // cancel warnings
-      setWarning(false);
-      setTooHigh(false);
-      setTooLow(false);
-      let int = 60 / tempo;
-      int *= 1000;
-      async function metro() {
-        const synth = new Tone.Synth().toDestination();
-        await Tone.start();
-        synth.triggerAttackRelease(pitch, "16n");
-      }
-      setMet(setInterval(metro, int));
-    } else {
-      if (tempo === "") {
-        setWarning(true);
-      }
-
-      if (tempo < 1) {
-        setWarning(true);
+    if (!active) {
+      if (bpm === "") {
+        setEmpty(true);
+        setTooLow(false);
+        setTooHigh(false);
+      } else if (tempo < 1) {
+        setEmpty(false);
         setTooLow(true);
-      }
-
-      if (tempo > 300) {
-        setWarning(true);
+        setTooHigh(false);
+      } else if (tempo > 300) {
+        setEmpty(false);
         setTooHigh(true);
+        setTooLow(false);
+      } else {
+        setActive(true);
+        // cancel warnings
+        setEmpty(false);
+        setTooHigh(false);
+        setTooLow(false);
+        let int = 60 / tempo;
+        int *= 1000;
+        async function metro() {
+          const synth = new Tone.Synth().toDestination();
+          await Tone.start();
+          synth.triggerAttackRelease(pitch, "16n");
+        }
+        setMet(setInterval(metro, int));
       }
+    } else {
       setActive(false);
       setMet(clearInterval(met));
     }
@@ -119,14 +120,14 @@ function Metronome() {
 
   return (
     <div className="Metronome">
-      {!warning ? (
-        <h3>Metronome</h3>
-      ) : warning && tooHigh ? (
+      {tooHigh ? (
         <h3 className="warning">Too high. Try something under 300.</h3>
-      ) : warning && tooLow ? (
+      ) : tooLow ? (
         <h3 className="warning">Too low. Try something above 0.</h3>
-      ) : (
+      ) : empty ? (
         <h3 className="warning">How many beats per minute (bpm) ?</h3>
+      ) : (
+        <h3>Metronome</h3>
       )}
       <div>
         <label htmlFor="metroInput">
@@ -137,7 +138,9 @@ function Metronome() {
             pattern="[0-9]*"
             value={bpm}
             onChange={(e) => setBpm(e.target.value)}
-            style={warning ? { border: "4px solid red" } : null}
+            style={
+              empty || tooHigh || tooLow ? { border: "4px solid red" } : null
+            }
           />
         </label>
         <label htmlFor="pitch">
